@@ -29,11 +29,7 @@ class Robot {
 };
 
 
-class VacuumCleanerBot extends Robot {
-    constructor(modelName, power) {
-        super(modelName);
-        this.power = power;
-    }
+class VacuumCleanerBot extends Robot {   
 
     makeRoomClear(room) {
         room.isCleaned = true;
@@ -46,12 +42,47 @@ class VacuumCleanerBot extends Robot {
 
 }
 
+
+class UberStaubsauger extends VacuumCleanerBot {
+    constructor(modelName,power) {
+        super(modelName)
+        this.date = new Date();
+        this.power = power;
+    }
+
+    makeFlatsClear(arrayOfRooms) {
+        arrayOfRooms.forEach(room => {
+            room.isCleaned = true;
+        });
+        return arrayOfRooms;
+    }
+
+}
+
+
+
 const verter = new Robot('Verter');
 const vacuum = new VacuumCleanerBot('Xiaomi', 9000);
 const hall = {
     name: 'hall',
     isCleaned: false,
 };
+const hans = new UberStaubsauger('Hans', 10000);
+const flat = [
+    {
+        name: 'hall',
+        isCleaned: false,
+    },
+    {
+        name: 'kitchen',
+        isCleaned: false,
+    },
+    {
+        name: 'chiledroom',
+        isCleaned: false,
+    }
+];
+
 
 
 
@@ -62,3 +93,4 @@ vacuum.toggleIsDisable();
 vacuum.toggleIsDisable();
 console.log(vacuum.makeSomeNoise());
 
+console.log(hans);
